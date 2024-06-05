@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const Menu=()=>{
+const FoodMenu=()=>{
   
     return(
       <div className='space-x-8 text-xl'>
@@ -167,4 +167,4 @@ const Menu=()=>{
     )
 
 }
-export default Menu
+export default FoodMenu;

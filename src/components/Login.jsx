@@ -1,10 +1,13 @@
 import * as React from 'react';
-import './App.css'
 
 
 
-export default function App () {
+
+
+export default function Login () {
    return(
+      <>
+      
       <div className='relative w-full h-screen bg-zinc-600  '> 
          <img className='absolute w-full h-full object-cover mix-blend-overlay ' src={"https://media.istockphoto.com/id/859900656/vector/kitchen-icon-of-dish-fork-and-knife-simple-set-of-restaurant-vector-line-icons.jpg?s=612x612&w=0&k=20&c=2Nr9P2nAPiXWpPuOlN8msjbhfH08TbR15v4lZ14jCK4="}/>
 
@@ -30,6 +33,7 @@ export default function App () {
          </div>
       </div>
 
+      </>
       
    )
 }

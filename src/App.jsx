@@ -1,29 +1,24 @@
 import React from 'react'
-import { BrowserRouter as Router,Route,Switch} from 'react-router-dom';
-import Menu from './components/Menu';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
-
-
+import FoodMenu from './components/FoodMenu';
+import Signup from './components/Signup';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <div className="App">
-      <Navbar/>
-      <div className="content">
-        <Switch>
-          <Route path="/">
-          <Login />
-          </Route>
-        </Switch>
+        <FoodMenu />
+        <Routes>
+          <Route path="/Navbar" element={<Navbar />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/Signup" element={<Signup />} />
+          <Route path="/" element={<Login />} /> {/* Assuming Login is the default route */}
+        </Routes>
       </div>
-      </div>
-      <Menu/>
-      </Router>
-     
-
-    
+    </BrowserRouter>
   )
 }
+
 export default App;
