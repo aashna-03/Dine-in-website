@@ -8,15 +8,15 @@ import Signup from './components/Signup';
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <FoodMenu />
+     <Signup/>
         <Routes>
-          <Route path="/Navbar" element={<Navbar />} />
-          <Route path="/login" element={<Login />} />
+         
+         
+          <Route path="/Login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
-          <Route path="/" element={<Login />} /> {/* Assuming Login is the default route */}
+        
         </Routes>
-      </div>
+      {/* </div> */}
     </BrowserRouter>
   )
 }
