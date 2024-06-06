@@ -8,12 +8,12 @@ import Signup from './components/Signup';
 function App() {
   return (
     <BrowserRouter>
-     <Signup/>
+     <Login/>
         <Routes>
          
          
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Signup" element={<Signup />} />
+          <Route path="/Login" element={<Signup />} />
+          <Route path="/" element={<FoodMenu />} />
         
         </Routes>
       {/* </div> */}

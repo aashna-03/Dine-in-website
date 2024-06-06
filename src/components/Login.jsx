@@ -1,39 +1,85 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
+export default function Login() {
+  const initialValues = { name: "", password: "" };
+  const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormErrors(validate(formValues));
+    setIsSubmit(true);
+  };
 
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      console.log(formValues);
+      // Perform login action here, like making an API call
+      window.location.reload(); // Reload the page after successful form submission
+    }
+  }, [formErrors]);
 
-export default function Login () {
-   return(
-      <>
-      
-      <div className='relative w-full h-screen bg-zinc-600  '> 
-         <img className='absolute w-full h-full object-cover mix-blend-overlay ' src={"https://media.istockphoto.com/id/859900656/vector/kitchen-icon-of-dish-fork-and-knife-simple-set-of-restaurant-vector-line-icons.jpg?s=612x612&w=0&k=20&c=2Nr9P2nAPiXWpPuOlN8msjbhfH08TbR15v4lZ14jCK4="}/>
+  const validate = (values) => {
+    const errors = {};
+    if (!values.name) {
+      errors.name = "Name is required!";
+    }
+    if (!values.password) {
+      errors.password = "Password is required!";
+    } else if (values.password.length < 6) {
+      errors.password = "Password must be more than 6 characters";
+    } else if (values.password.length > 20) {
+      errors.password = "Password cannot exceed more than 20 characters";
+    }
+    return errors;
+  };
 
-         <div className='flex justify-center items-center h-full'>
-            <form className='max-w-[480px] w-full mx-auto bg-white p-8'>
-               <h2 className='text-4xl font-bold text-centre py-4'>Login</h2>
-               <div className='flex justify-between'>
-              
-                  
-               </div>
-               <div className='flex flex-col mb-4 '>
-                  <label>Username</label>
-                  <input className='border relative bg-gray-200 ' type="text"/>
-                  </div>
-                  <div className='flex flex-col'>
-                  <label>Password</label>
-                  <input className='border relative bg-gray-200 p-2' type="password"/>
-
-               </div>
-               <button className='w-full py-3 mt-8 bg-zinc-900 text-white'>Login</button>
-               <p>Dont have an account?<a>Sign Up</a></p>
-            </form>
-         </div>
+  return (
+    <>
+      <div className='relative w-full h-screen bg-zinc-600'>
+        <img
+          className='absolute w-full h-full object-cover mix-blend-overlay'
+          src="https://media.istockphoto.com/id/859900656/vector/kitchen-icon-of-dish-fork-and-knife-simple-set-of-restaurant-vector-line-icons.jpg?s=612x612&w=0&k=20&c=2Nr9P2nAPiXWpPuOlN8msjbhfH08TbR15v4lZ14jCK4="
+          alt="background"
+        />
+        <div className='flex justify-center items-center h-full'>
+          <form className='max-w-[480px] w-full mx-auto bg-white p-8' onSubmit={handleSubmit}>
+            <h2 className='text-4xl font-bold text-center py-4'>Login</h2>
+            <div className='flex flex-col mb-4'>
+              <label>Name</label>
+              <input
+                className='border relative bg-gray-200 p-2'
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={formValues.name}
+                onChange={handleChange}
+              />
+              {formErrors.name && <p className="text-black-800">{formErrors.name}</p>}
+            </div>
+            <div className='flex flex-col mb-4'>
+              <label>Password</label>
+              <input
+                className='border relative bg-gray-200 p-2'
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formValues.password}
+                onChange={handleChange}
+              />
+              {formErrors.password && <p className="text-black-800">{formErrors.password}</p>}
+            </div>
+            <button className='w-full py-3 mt-8 bg-zinc-900 text-white' type="submit">Login</button>
+            <p className="mt-4">Don't have an account? <a href="#" className="text-blue-500">Sign Up</a></p>
+          </form>
+        </div>
       </div>
-
-      </>
-      
-   )
+    </>
+  );
 }
